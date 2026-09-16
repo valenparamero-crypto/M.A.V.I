@@ -1,12 +1,24 @@
 # 📄 Documentación — M.A.V.I.
+
 > *Módulo Autónomo de Visión Inteligente*
 
-Esta carpeta centraliza la documentación formal del proyecto M.A.V.I. Previamente contendrá el acta de constitución del proyecto, elaborada bajo las normas APA 7ma edición. El contenido de esta carpeta se irá actualizando progresivamente a medida que avance el desarrollo del proyecto.
+Esta carpeta centraliza la documentación formal del proyecto M.A.V.I. Contiene la formulación técnica, la planificación de actividades y el presupuesto detallado elaborado bajo las normas APA 7ma edición.
+
+---
+
+## 📑 Archivos e Insumos Disponibles
+
+| Archivo | Descripción | Formato |
+| :--- | :--- | :--- |
+| **ACTA DE CONSTITUCIÓN.pdf** | Documento base del proyecto (Alcance, Requisitos RT1-RT6, Marco Teórico, Presupuesto) | `.pdf` |
+| **GANTT.xlsx** | Cronograma detallado de 11 semanas, estimación de 1.368 horas/hombre y cálculo de costos | `.xlsx` |
+| **Ruta_Critica_CPM.png** | Diagrama CPM de precedencias, ruta crítica activa y holguras de desarrollo | `.png` |
 
 ---
 
 ## 👤 Responsable
-**Laura Valentina Paramero** — Rol: Documentación
 
-Formación Integral · Proyecto Integrador I · Proyecto Integrador II  
-Ingeniería Mecatrónica · Universidad Tecnológica de Pereira · 2026-2
+**Laura Valentina Paramero** — *Rol: Documentación*  
+
+*Formación Integral · Proyecto Integrador I · Proyecto Integrador II*  
+*Ingeniería Mecatrónica · Universidad Tecnológica de Pereira · 2026-2*
