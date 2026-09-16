@@ -6,19 +6,21 @@ Esta carpeta centraliza la documentación formal del proyecto M.A.V.I. Contiene 
 
 ---
 
-## 📑 Archivos e Insumos Disponibles
+## 📁 Estructura y Contenido de la Carpeta
 
-| Archivo | Descripción | Formato |
-| :--- | :--- | :--- |
-| **ACTA DE CONSTITUCIÓN.pdf** | Documento base del proyecto (Alcance, Requisitos RT1-RT6, Marco Teórico, Presupuesto) | `.pdf` |
-| **GANTT.xlsx** | Cronograma detallado de 11 semanas, estimación de 1.368 horas/hombre y cálculo de costos | `.xlsx` |
-| **Ruta_Critica_CPM.png** | Diagrama CPM de precedencias, ruta crítica activa y holguras de desarrollo | `.png` |
+```text
+documentación/
+├── ACTA DE CONSTITUCIÓN.pdf # Documento base del proyecto (Alcance, Requisitos RT1-RT6, Marco Teórico, Presupuesto)
+├── GANTT.xlsx              # Cronograma detallado de 11 semanas, estimación de 1.368 horas/hombre y cálculo de costos
+├── Ruta_Critica_CPM.png    # Diagrama CPM de precedencias, ruta crítica activa y holguras de desarrollo
+└── README.md               # Presentación e inventario de archivos de documentación
+```
 
 ---
 
 ## 👤 Responsable
 
-**Laura Valentina Paramero** — *Rol: Documentación*  
+**Laura Valentina Paramero Lopez** — *Rol: Documentación*  
 
 *Formación Integral · Proyecto Integrador I · Proyecto Integrador II*  
 *Ingeniería Mecatrónica · Universidad Tecnológica de Pereira · 2026-2*
