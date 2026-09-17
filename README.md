@@ -16,6 +16,7 @@ M.A.V.I./
 │   ├── ACTA DE CONSTITUCIÓN.pdf # Acta oficial formateada bajo norma APA 7ma ed.
 │   ├── GANTT.xlsx              # Cronograma de actividades, horas y presupuesto
 │   ├── Ruta_Critica_CPM.png    # Diagrama de red de actividades (Método CPM)
+├── ├── PLANEACIÓN BITÁCORA SEMANA 8 Y 9.pdf    # Registro de planeación de actividades (Semanas 8-9)
 │   └── README.md
 ├── src/                       # Código fuente principal (Python / ESP32 C++)
 │   └── README.md
