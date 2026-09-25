@@ -11,6 +11,7 @@ Firmware de la ESP32: control de motores, lectura de encoders y sensores, y ejec
 ## 👤 Responsable
 
 **Edwar Alfonso León** — Rol: Programación
+
 Trabajo de esta semana 8: **Laura Valentina Paramero** (rotación de roles)
 
 Formación Integral · Proyecto Integrador I · Proyecto Integrador II

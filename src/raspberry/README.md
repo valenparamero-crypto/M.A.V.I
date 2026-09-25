@@ -11,6 +11,7 @@ Código que corre en la Raspberry Pi 5: captura de cámara, lectura de códigos 
 ## 👤 Responsable
 
 **Edwar Alfonso León** — Rol: Programación
+
 Trabajo de esta semana 8: **Laura Valentina Paramero** (rotación de roles)
 
 Formación Integral · Proyecto Integrador I · Proyecto Integrador II

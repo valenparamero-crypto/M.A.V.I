@@ -11,6 +11,7 @@ Recursos compartidos entre la Raspberry Pi y la ESP32: el mapa de registros I2C,
 ## 👤 Responsable
 
 **Edwar Alfonso León** — Rol: Programación
+
 Trabajo de esta semana 8: **Laura Valentina Paramero** (rotación de roles)
 
 Formación Integral · Proyecto Integrador I · Proyecto Integrador II
