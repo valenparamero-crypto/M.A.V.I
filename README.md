@@ -19,7 +19,13 @@ M.A.V.I./
 ├── ├── PLANEACIÓN BITÁCORA SEMANA 8 Y 9.pdf    # Registro de planeación de actividades (Semanas 8-9)
 │   └── README.md
 ├── src/                       # Código fuente principal (Python / ESP32 C++)
-│   └── README.md
+│   ├── README.md
+│   ├── raspberry/             # Código de la Raspberry Pi 5 (visión, QR, decisiones)
+│   │   └── README.md
+│   ├── esp32/                 # Firmware de la ESP32 (motores, sensores)
+│   │   └── README.md
+│   └── common/                # Compartido: mapa de registros I2C
+│       └── README.md
 ├── .gitignore                 # Archivos excluidos del control de versiones
 ├── LICENSE                    # Licencia del repositorio
 └── README.md                  # Presentación general y estructura del proyecto
