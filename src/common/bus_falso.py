@@ -20,12 +20,13 @@ class BusI2CFalso:
         Simula el envío de una trama por el bus.
         Si el checksum no cuadra, la ESP32 (falsa) rechaza el mensaje.
         """
+        registro, valor, checksum = trama
+
         if not verificar_mensaje(trama):
-            print(f"[BUS FALSO] Mensaje rechazado (checksum inválido): {trama}")
+            print(f"[BUS FALSO] Mensaje rechazado (checksum inválido): registro={registro}, valor={valor}, checksum={checksum}")
             self.estado_actual = 0
             return False
 
-        registro, valor, _ = trama
         print(f"[BUS FALSO] ESP32 recibió: registro={registro}, valor={valor}")
         self.estado_actual = 1
         return True
