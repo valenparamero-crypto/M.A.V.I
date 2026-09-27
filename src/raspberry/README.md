@@ -6,6 +6,10 @@
 
 Código que corre en la Raspberry Pi 5: captura de cámara, lectura de códigos QR, lógica de decisiones (máquina de estados) y envío de comandos a la ESP32 por protocolo I2C.
 
+## 📁 Archivos
+
+- `i2c_master.py`: acceso real al bus I2C (usa la librería smbus2; solo funciona en Linux, pendiente de probar con hardware).
+
 ---
 
 ## 👤 Responsable
