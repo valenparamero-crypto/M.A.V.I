@@ -8,12 +8,13 @@ Esta carpeta contiene la documentación de la arquitectura electrónica, esquem�
 
 ```text
 diseño electrónico/
-├── Evidencias/                          # Registro fotográfico y pruebas de laboratorio
+├── Evidencias/                          # Registro fotográfico, esquemáticos y pruebas
 │   ├── README.md
 │   ├── ajuste_mecanico_acople_ruedas.png
 │   ├── banco_pruebas_electrónica_esp32.png
 │   ├── chasis_provisional_locomocion.png
 │   ├── ensamble_ruedas_holonomicas.png
+│   ├── esquema_preliminar_fusion.png
 │   ├── impresion_3d_resina_acoples.png
 │   └── par_motorreductores_ruedas.png
 └── README.md
