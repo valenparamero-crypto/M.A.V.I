@@ -8,7 +8,7 @@ Esta carpeta contiene la documentación de arquitectura electrónica, esquemáti
 
 ## 📁 Estructura del Subsistema
 
-* 🖼️ **[Galería de Evidencias Fotográficas (Semana 8)](evidencias/):** Registro visual interactivo de las pruebas de laboratorio con la ESP32-S3, acoples impresos en resina 3D y chasis de pruebas dinámicas.
+* 🖼️ **[Galería de Evidencias Fotográficas (Semana 8)](Evidencias/):** Registro visual interactivo de las pruebas de laboratorio con la ESP32-S3, acoples impresos en resina 3D y chasis de pruebas dinámicas.
 
 ---
 

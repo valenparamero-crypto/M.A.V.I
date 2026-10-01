@@ -7,7 +7,7 @@
 ### 1. ⚡ Banco de Pruebas Electrónico
 > **Componentes:** ESP32-S3 · Driver TB6612FNG · Fuente de alimentación (5.1V @ 2A)
 
-![Banco de pruebas electrónica](banco_pruebas_electronica_esp32.png)
+![Banco de pruebas electrónica](banco_pruebas_electrónica_esp32.png)
 
 *Montaje de laboratorio para la validación de señales PWM, protocolo de comunicación y comportamiento térmico del driver de potencia.*
 
@@ -34,7 +34,7 @@
 ### 4. ⚙️ Adaptadores y Ruedas Mecanum
 > **Componentes:** Ruedas omnidireccionales + Acoples impresos
 
-![Ensamble de ruedas y acoples](ensamble_ruedas_mecanum_acoples.png)
+![Ensamble de ruedas y acoples](ensamble_ruedas_holonomicas_acoples.png)
 
 *Integración física de las ruedas Mecanum con los adaptadores terminados antes de su montaje en los motores.*
 
@@ -43,7 +43,7 @@
 ### 5. 🔍 Par de Motorreductores y Tracción
 > **Vista:** Superior / Simetría de actuadores
 
-![Par de motorreductores](par_motorreductores_ruedas_mecanum.png)
+![Par de motorreductores](par_motorreductores_ruedas_holonomicas.png)
 
 *Vista superior de la alineación y simetría del par de motorreductores ensamblados con sus respectivas ruedas de prueba.*
 
@@ -52,7 +52,7 @@
 ### 6. 🚚 Chasis Provisional de Locomoción
 > **Estructura:** Base provisional de madera · Montaje de tracción diferencial
 
-![Chasis provisional montado](chasis_provisional_locomocion_diferencial.png)
+![Chasis provisional montado](chasis_provisional_locomoción_diferencial.png)
 
 *Estructura provisional ensamblada para la ejecución de pruebas dinámicas de trayectoria, viraje y compensación de velocidad por software.*
 
