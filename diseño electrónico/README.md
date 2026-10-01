@@ -2,18 +2,25 @@
 
 *Módulo Autónomo de Visión Inteligente*
 
----
+Esta carpeta contiene la documentación de la arquitectura electrónica, esquemáticos, diagramas de potencia y registros fotográficos de las pruebas del sistema.
 
-Esta carpeta contiene la documentación de arquitectura electrónica, esquemáticos, diagramas de potencia y registros fotográficos de las pruebas del sistema.
+## 📁 Estructura
 
-## 📁 Estructura del Subsistema
-
-* 🖼️ **[Galería de Evidencias Fotográficas (Semana 8)](Evidencias/):** Registro visual interactivo de las pruebas de laboratorio con la ESP32-S3, acoples impresos en resina 3D y chasis de pruebas dinámicas.
-
----
+```text
+diseño electrónico/
+├── Evidencias/                          # Registro fotográfico y pruebas de laboratorio
+│   ├── README.md
+│   ├── ajuste_mecanico_acople_ruedas.png
+│   ├── banco_pruebas_electrónica_esp32.png
+│   ├── chasis_provisional_locomocion.png
+│   ├── ensamble_ruedas_holonomicas.png
+│   ├── impresion_3d_resina_acoples.png
+│   └── par_motorreductores_ruedas.png
+└── README.md
+```
 
 ## 👤 Responsables
 
-**Juan Miguel Noreña** — Rol: Líder Técnico / Electrónica 
+**Juan Miguel Noreña** — Rol: Líder Técnico / Electrónica  
 
 Formación Integral · Proyecto Integrador I · Proyecto Integrador II · Ingeniería Mecatrónica · Universidad Tecnológica de Pereira · 2026-2

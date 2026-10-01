@@ -1,12 +1,24 @@
-# 🔩 Diseño Mecánico — M.A.V.I.
-> *Módulo Autónomo de Visión Inteligente*
+# 🔧 Diseño Mecánico — M.A.V.I.
 
-Esta carpeta contiene los archivos relacionados con el diseño estructural y físico de la plataforma de M.A.V.I. Actualmente se encuentra en fase de diseño conceptual en Fusion 360, donde se están definiendo las dimensiones generales, la distribución de componentes y la geometría del chasis.
+*Módulo Autónomo de Visión Inteligente*
 
----
+Esta carpeta contiene la documentación del diseño estructural, el modelado CAD tridimensional y los archivos estandarizados para la fabricación del chasis de M.A.V.I.
 
-## 👤 Responsable
-**Sara Edith Perilla** — Rol: Mecánica
+## 📁 Estructura
 
-Formación Integral · Proyecto Integrador I · Proyecto Integrador II  
-Ingeniería Mecatrónica · Universidad Tecnológica de Pereira · 2026-2
+```text
+diseño mecánico/
+├── CAD/                                 # Modelos tridimensionales universales (.STEP)
+│   └── chasis_mavi.stp
+├── Evidencias/                          # Renders 3D y galería visual interactiva
+│   ├── README.md
+│   ├── mavi_isometrico_inferior.png
+│   └── mavi_isometrico_superior.png
+└── README.md
+```
+
+## 👤 Responsables
+
+**Sara Edith Perilla** — Rol: Mecánica  
+
+Formación Integral · Proyecto Integrador I · Proyecto Integrador II · Ingeniería Mecatrónica · Universidad Tecnológica de Pereira · 2026-2
