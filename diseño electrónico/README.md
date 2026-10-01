@@ -1,12 +1,19 @@
 # ⚡ Diseño Electrónico — M.A.V.I.
-> *Módulo Autónomo de Visión Inteligente*
 
-Esta carpeta contendra los archivos relacionados con la arquitectura electrónica de M.A.V.I. Actualmente se encuentra en fase de planeación, donde se está definiendo la arquitectura del sistema, el esquemático eléctrico y el árbol de potencia.
+*Módulo Autónomo de Visión Inteligente*
 
 ---
 
-## 👤 Responsable
-**Juan Miguel Noreña** — Rol: Electrónica / Líder Técnico
+Esta carpeta contiene la documentación de arquitectura electrónica, esquemáticos, diagramas de potencia y registros fotográficos de las pruebas del sistema.
 
-Formación Integral · Proyecto Integrador I · Proyecto Integrador II  
-Ingeniería Mecatrónica · Universidad Tecnológica de Pereira · 2026-2
+## 📁 Estructura del Subsistema
+
+* 🖼️ **[Galería de Evidencias Fotográficas (Semana 8)](evidencias/):** Registro visual interactivo de las pruebas de laboratorio con la ESP32-S3, acoples impresos en resina 3D y chasis de pruebas dinámicas.
+
+---
+
+## 👤 Responsables
+
+**Juan Miguel Noreña** — Rol: Líder Técnico / Electrónica 
+
+Formación Integral · Proyecto Integrador I · Proyecto Integrador II · Ingeniería Mecatrónica · Universidad Tecnológica de Pereira · 2026-2
