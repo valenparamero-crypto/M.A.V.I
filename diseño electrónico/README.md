@@ -17,7 +17,8 @@ diseño electrónico/
 │   ├── esquema_preliminar_fusion.png
 │   ├── impresion_3d_resina_acoples.png
 │   └── par_motorreductores_ruedas.png
-└── README.md
+├── Diagrama_De_Bloques_Electrónico.png    # Esquema general de conexiones
+└── README.md                            # Documentación principal del área
 ```
 
 ## 👤 Responsables
