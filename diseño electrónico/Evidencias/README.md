@@ -1,11 +1,11 @@
 # 📸 Galería de Evidencias — Diseño Electrónico
 
-*Registro técnico de pruebas de laboratorio, prototipado físico, selección de herramientas EDA y desarrollo del esquemático de M.A.V.I.*
+*Registro técnico de pruebas de laboratorio, prototipado físico, visión artificial, diseño de PCB y arquitectura del sistema de M.A.V.I.*
 
 ---
 
 ## 🧪 Pruebas de Laboratorio y Prototipado Físico
-> **Responsable:** Juan Miguel Noreña (Líder Técnico / Electrónica)
+> **Responsables:** Juan Miguel Noreña (Líder Técnico / Electrónica)
 
 ### 1. ⚡ Banco de Pruebas Electrónico
 > **Componentes:** ESP32-S3 · Driver TB6612FNG · Fuente de alimentación (5.1V @ 2A)
@@ -51,15 +51,48 @@
 
 ---
 
-## 💻 Arquitectura EDA, Librerías 3D y Esquemático
-> **Responsable:** Sara Edith Perilla (Mecánica / Apoyo de Integración Electrónica)
+## 📷 Pruebas de Visión Artificial y Sensores
+> **Responsables:** Equipo M.A.V.I. (Integración RPi5 + IMX219)
 
-### 7. 📐 Evaluación EDA y Creación de Librerías Electrónicas
+### 7. 📹 Validación de Cámara IMX219
+> **Hardware:** Raspberry Pi 5 · Cámara IMX219-160 (162° FOV)
+
+![Prueba Cámara IMX219](camara_imx_219_prueba.png)
+
+*Verificación de adquisición de flujo de video en tiempo real, calibración de contraste y ángulo de visión de la cámara instalada.*
+
+### 8. 🏷️ Detección y Lectura de AprilTags
+> **Algoritmo:** OpenCV / AprilTag Library
+
+![Detección de AprilTags](detección_apriltags.png)
+
+*Validación del algoritmo de procesamiento de imagen para el reconocimiento, identificación de IDs y estimación de pose a partir de AprilTags.*
+
+### 9. 🏁 Reconocimiento de Pista y Entorno
+> **Procesamiento:** Visión por computador en Raspberry Pi 5
+
+![Reconocimiento de Pista](reconocimiento_de_pista.png)
+
+*Pruebas de adquisición de imagen del entorno de navegación y segmentación de la pista de pruebas para la guía del robot.*
+
+---
+
+## 💻 Arquitectura Electrónica, Esquemático y Diseño de PCB
+> **Responsable:** Sara Edith Perilla (Mecánica / Integración Electrónica)
+
+### 10. 📐 Esquemático Electrónico Consolidado
 > **Herramienta:** Autodesk Fusion Electronics / Schematics
 
-![Esquema preliminar en Fusion](esquema_preliminar_fusion.png)
+![Esquema Electrónico](esquema_electronico.png)
 
-*Evaluación comparativa de plataformas EDA (Fritzing, KiCad, EasyEDA) e integración directa en Autodesk Fusion 360. Desarrollo desde cero de las librerías electrónicas (símbolos esquemáticos, huellas y modelos 3D) para la **Raspberry Pi 5**, **ESP32-S3** y driver **TB6612FNG**, permitiendo estructurar el esquemático preliminar y garantizar la co-integración 3D con el chasis.*
+*Diagrama esquemático consolidado del sistema que integra microcontroladores (ESP32-S3), módulo de procesamiento (Raspberry Pi 5), reguladores de voltaje, etapas de potencia (TB6612FNG) y acondicionado de señal para sensores.*
+
+### 11. 🎛️ Diseño y Render de PCB (Placa de Circuito Impreso)
+> **Archivo Integrado:** `mavi_pcb_diseno_integral.f3z` en `/PCB/`
+
+![Render PCB](render_pcb.png)
+
+*Vista integral en Autodesk Fusion 360 del esquema, trazado de pistas (layout 2D) y renderizado 3D de la tarjeta de circuito impreso proyectada para la versión consolidada del MVP.*
 
 ---
 

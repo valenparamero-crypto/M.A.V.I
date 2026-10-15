@@ -4,19 +4,31 @@
 
 ---
 
-Código que corre en la Raspberry Pi 5: captura de cámara, lectura de códigos QR, lógica de decisiones (máquina de estados) y envío de comandos a la ESP32 por protocolo I2C.
+Código que corre en la Raspberry Pi 5: captura de video con cámara IMX219, procesamiento de visión por computador, detección de AprilTags, lógica de decisiones y envío de comandos maestros a la ESP32 mediante protocolo I2C.
 
-## 📁 Archivos
+---
 
-- `i2c_master.py`: acceso real al bus I2C (usa la librería smbus2; solo funciona en Linux, pendiente de probar con hardware).
+## 📁 Estructura de la Carpeta
+
+```text
+raspberry/
+├── i2c_master.py                          # Script maestro para la gestión de comunicación I2C (smbus2)
+├── Test_Coml2C_RBP5-ESP32.py              # Script de pruebas y validación de comunicación I2C entre RPi5 y ESP32
+└── README.md                              # Documentación del subsistema de procesamiento y visión
+```
+
+---
+
+## 💻 Descripción de los Scripts
+
+* **`i2c_master.py`:** Implementa la interfaz maestra de comunicación sobre el bus I2C utilizando la librería `smbus2` para el envío de tramas de control hacia el microcontrolador de bajo nivel.
+* **`Test_Coml2C_RBP5-ESP32.py`:** Script orientado a pruebas de integración hardware/software para verificar la estabilidad y el intercambio correcto de paquetes de datos entre la Raspberry Pi 5 y la ESP32.
 
 ---
 
 ## 👤 Responsable
 
 **Edwar Alfonso León** — Rol: Programación
-
-Trabajo de esta semana 8: **Laura Valentina Paramero** (rotación de roles)
 
 Formación Integral · Proyecto Integrador I · Proyecto Integrador II
 Ingeniería Mecatrónica · Universidad Tecnológica de Pereira · 2026-2

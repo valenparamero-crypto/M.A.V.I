@@ -10,13 +10,15 @@ Esta carpeta centraliza la documentación formal del proyecto M.A.V.I. Contiene 
 
 ```text
 documentación/
-├── ACTA DE CONSTITUCIÓN.pdf                          # Documento base y acta de inicio del proyecto
+├── ACTA DE CONSTITUCIÓN.pdf                        # Documento base y acta de inicio del proyecto
 ├── BITÁCORA DE PLANEACIÓN SEMANA 10 Y 11.pdf         # Planeación de actividades técnicas y administrativas (Semanas 10 y 11)
-├── GANTT.xlsx                                        # Cronograma detallado de 11 semanas y estimación de carga horaria
+├── BITÁCORA DE PLANEACIÓN SEMANA 12-13-14.pdf      # Planeación estratégica para las semanas 12 a 14
+├── GANTT.xlsx                                      # Cronograma detallado y estimación de carga horaria
 ├── PLANEACIÓN BITÁCORA SEMANA 8 Y 9.pdf              # Registro preliminar de planeación (Semanas 8 y 9)
 ├── PLANEACIÓN Y EJECUCIÓN BITÁCORA SEMANA 8 Y 9.pdf  # Bitácora consolidada de planeación y ejecución (Semanas 8 y 9)
-├── README.md                                         # Índice y presentación de la carpeta de documentación
-└── Ruta_Critica_CPM.png                              # Diagrama CPM de precedencias, ruta crítica activa y holguras
+├── PROPUESTA FORMAL.pdf                            # Propuesta técnica formal del sistema autónomo
+├── README.md                                       # Índice y presentación de la carpeta de documentación
+└── Ruta_Critica_CPM.png                            # Diagrama CPM de precedencias, ruta crítica activa y holguras
 ```  
 
 ---
