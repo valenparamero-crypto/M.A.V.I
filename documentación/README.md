@@ -16,6 +16,7 @@ documentación/
 ├── GANTT.xlsx                                      # Cronograma detallado y estimación de carga horaria
 ├── PLANEACIÓN BITÁCORA SEMANA 8 Y 9.pdf              # Registro preliminar de planeación (Semanas 8 y 9)
 ├── PLANEACIÓN Y EJECUCIÓN BITÁCORA SEMANA 8 Y 9.pdf  # Bitácora consolidada de planeación y ejecución (Semanas 8 y 9)
+├── PLANEACIÓN Y EJECUCIÓN BITÁCORA SEMANA 10 Y 11.pdf  # Bitácora consolidada de planeación y ejecución (Semanas 10 y 11)
 ├── PROPUESTA FORMAL.pdf                            # Propuesta técnica formal del sistema autónomo
 ├── README.md                                       # Índice y presentación de la carpeta de documentación
 └── Ruta_Critica_CPM.png                            # Diagrama CPM de precedencias, ruta crítica activa y holguras

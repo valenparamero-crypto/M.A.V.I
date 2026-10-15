@@ -78,6 +78,7 @@ M.A.V.I./
 │   ├── GANTT.xlsx
 │   ├── PLANEACIÓN BITÁCORA SEMANA 8 Y 9.pdf
 │   ├── PLANEACIÓN Y EJECUCIÓN BITÁCORA SEMANA 8 Y 9.pdf
+│   ├── PLANEACIÓN Y EJECUCIÓN BITÁCORA SEMANA 10 Y 11.pdf
 │   ├── PROPUESTA FORMAL.pdf
 │   ├── README.md
 │   └── Ruta_Critica_CPM.png
