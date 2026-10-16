@@ -15,6 +15,7 @@ diseño electrónico/
 │   ├── ajuste_mecanico_acople_rueda.png
 │   ├── banco_pruebas_electrónica_esp32.png
 │   ├── camara_imx_219_prueba.png
+│   ├── chasis_mdf_ensamblado_integral.png
 │   ├── chasis_provisional_locomoción_diferencial.png
 │   ├── detección_apriltags.png
 │   ├── ensamble_ruedas_holonomicas_acoples.png
