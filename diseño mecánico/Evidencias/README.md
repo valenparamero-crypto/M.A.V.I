@@ -5,7 +5,7 @@
 ---
 
 ## 📐 Renders del Diseño CAD (Versión Actualizada / Objetivo)
-> **Responsables:** Equipo de Diseño Mecánico (Edward & Sara)
+> **Responsables:** Equipo de Diseño Mecánico (Edwar & Sara)
 
 ### 1. ⚙️ Vista Isométrica Superior (Ensamblaje General)
 ![Vista Isométrica Superior](vista_isometrica_superior.png)
@@ -15,7 +15,7 @@
 ### 2. 🔍 Vista Isométrica Inferior (Detalle de Tracción)
 ![Vista Isométrica Inferior](vista_isometrica_inferior.png)
 
-*Vista detallada de la parte inferior del chasis. Resalta la integración de las ruedas mecanum y la geometría del mecanismo de tracción para la locomoción omnidireccional.*
+*Vista detallada de la parte inferior del chasis. Resalta la integración de las dos ruedas Mecanum en tracción diferencial y de las cuatro ruedas locas de balín que dan estabilidad al chasis.*
 
 ---
 
@@ -49,8 +49,18 @@
 
 ---
 
+## ✅ Resultado del Diseño
+> **Fase:** Chasis definitivo tras la validación preliminar
+
+### 7. 🏁 Chasis Definido
+![Chasis definido](Chasis_definido.png)
+
+*Modelo CAD del chasis definitivo de M.A.V.I. en Autodesk Fusion 360, con la distribución final de la electrónica, la plataforma de dos niveles y el soporte ajustable de la cámara.*
+
+---
+
 ## 📄 Documentación Técnica Complementaria
-* **[DISEÑO CONCEPTUAL CAD CON LISTADO DE MATERIALES.pdf](./DISEÑO%20CONCEPTUAL%20CAD%20CON%20LISTADO%20DE%20MATERIALES.pdf)**: Documento técnico que detalla la conceptualización del chasis y el listado preliminar de componentes.
+* **[DISEÑO CONCEPTUAL CAD CON LISTADO DE MATERIALES.pdf](../DISEÑO%20CONCEPTUAL%20CAD%20CON%20LISTADO%20DE%20MATERIALES.pdf)**: Documento técnico que detalla la conceptualización del chasis y el listado preliminar de componentes.
 
 ---
 
