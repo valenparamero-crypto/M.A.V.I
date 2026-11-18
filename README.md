@@ -1,49 +1,55 @@
 <div align="center">
 
-# 🤖 M.A.V.I. — Módulo Autónomo de Visión Inteligente
+# 🤖 M.A.V.I.
+### Módulo Autónomo de Visión Inteligente
 
-**Vehículo Guiado Automáticamente (AGV) con plataforma holonómica y visión artificial**
+*Vehículo Guiado Automáticamente (AGV) con plataforma holonómica y visión artificial*
 
-**Facultad de Tecnología**
-**Universidad Tecnológica de Pereira**
-**Programa de Ingeniería Mecatrónica**
-**Semestre Integrador — Proyecto Integrador I y II · 2026-2**
-**Grupo #** _(completar)_
+![Raspberry Pi 5](https://img.shields.io/badge/Raspberry%20Pi-5-C51A4A?logo=raspberrypi&logoColor=white)
+![ESP32-S3](https://img.shields.io/badge/ESP32--S3-E7352C?logo=espressif&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![C++](https://img.shields.io/badge/C%2B%2B-00599C?logo=cplusplus&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?logo=opencv&logoColor=white)
+![Fusion 360](https://img.shields.io/badge/Fusion%20360-FF6A00?logo=autodesk&logoColor=white)
+![Licencia MIT](https://img.shields.io/badge/Licencia-MIT-green)
+
+**Universidad Tecnológica de Pereira** · Facultad de Tecnología
+Ingeniería Mecatrónica · Semestre Integrador 2026-2 · **Grupo 2**
+
+[Introducción](#-introducción) ·
+[Objetivo](#-objetivo-general) ·
+[Áreas](#-áreas-de-desarrollo) ·
+[Materiales](#-materiales-y-tecnologías) ·
+[Estado](#-estado-actual) ·
+[Equipo](#-equipo)
 
 </div>
 
 ---
 
-## 👥 Integrantes
-
-| Nombre | Rol principal |
-| :--- | :--- |
-| **Juan Miguel Noreña** | Líder técnico / Electrónica |
-| **Sara Edith Perilla** | Diseño mecánico |
-| **Edwar Alfonso León** | Programación |
-| **Laura Valentina Paramero** | Documentación |
-
-> En el equipo los roles rotan entre áreas según la semana; la tabla muestra el área de la que cada persona es responsable.
-
----
-
 ## 📌 Introducción
 
-**M.A.V.I.** es un Vehículo Guiado Automáticamente (AGV) pensado para el transporte interno de cargas de hasta **1 kg** entre estaciones de carga y descarga, sobre una pista compartida con otros equipos. El vehículo sigue la pista con una cámara, reconoce cada estación mediante **AprilTags** ubicados en soportes verticales, detecta si lleva carga encima y se comunica con las estaciones por señales infrarrojas.
+**M.A.V.I.** es un AGV diseñado para el transporte interno de cargas de hasta **1 kg** entre estaciones de carga y descarga, sobre una pista compartida con otros equipos. El vehículo sigue la pista con una cámara, reconoce cada estación mediante **AprilTags**, detecta si lleva carga, identifica obstáculos y se comunica con las estaciones por infrarrojo. Además, cuenta con una interfaz de usuario para supervisar el vehículo, asignar misiones y detenerlo a distancia.
 
-El proyecto integra cuatro áreas:
+El proyecto se construye sobre cuatro áreas:
 
-### 🔧 Diseño mecánico
-Chasis diseñado en **Autodesk Fusion 360** inspirado en robots logísticos tipo Amazon Kiva. La base usa **2 ruedas holonómicas tipo Mecanum** (rodillos a 45°) con tracción diferencial y **4 ruedas locas** de apoyo. Se validó primero con prototipos en MDF y luego con piezas impresas en 3D (resina SLA y FDM) para soportes de motores y ruedas locas.
+| | Área | En pocas palabras |
+| :---: | :--- | :--- |
+| 🔧 | **Diseño mecánico** | Chasis impreso en PLA, inspirado en robots logísticos tipo Amazon Kiva, con 2 ruedas Mecanum de tracción diferencial y 4 ruedas locas de apoyo. |
+| ⚡ | **Electrónica y potencia** | Batería LiPo de 7.4 V, regulación a 5.1 V con un XL4016 y una PCB propia que integra potencia, driver de motores y sensores. |
+| 🎛️ | **Control y movimiento** | Una ESP32-S3 controla los motores con encoders y lee los sensores: IMU, distancia láser, báscula, infrarrojo y paro de emergencia. |
+| 👁️ | **Visión por computador** | Una Raspberry Pi 5 con cámara gran angular de 162° detecta la pista, los AprilTags y los obstáculos, y envía las órdenes a la ESP32-S3 por I²C. |
 
-### ⚡ Electrónica y potencia
-Batería **LiPo de 7.4 V / 5000 mAh**, con un regulador reductor **XL4016** que entrega 5.1 V a la Raspberry Pi 5, la ESP32-S3 y la lógica del driver. Los motores **JGY-370 con encoder** se controlan con el driver **TB6612FNG**. Todo se consolida en una **PCB propia** diseñada en Fusion 360. Incluye switch general y pulsador de paro de emergencia.
+<div align="center">
 
-### 🎛️ Control y movimiento
-La **ESP32-S3** hace el control de bajo nivel: genera el PWM de los motores, lee los encoders, el giroscopio/acelerómetro **BMI270**, el sensor de distancia **VL53L1X**, la celda de carga (**HX711**) y el par infrarrojo. Recibe órdenes de la Raspberry Pi 5 por **I²C** (Raspberry = maestro, ESP32 = esclavo) usando un mapa de registros propio.
+```text
+ Cámara IMX219 ──► Raspberry Pi 5 ──I²C──► ESP32-S3 ──► TB6612FNG ──► Motores JGY-370
+  (visión)         (decisiones)           (control)      (driver)       (con encoder)
+                                             ▲
+               BMI270 · VL53L1X · HX711 · Infrarrojo · Paro de emergencia
+```
 
-### 👁️ Visión por computador
-La **Raspberry Pi 5** procesa en Python el video de la cámara **IMX219 (162° FOV)**: detecta las líneas de la pista, reconoce los **AprilTags** de las estaciones y detecta obstáculos (el VL53L1X mide la distancia para decidir si parar). Con esa información toma las decisiones de navegación y se las envía a la ESP32-S3.
+</div>
 
 ---
 
@@ -53,87 +59,79 @@ Desarrollar un vehículo guiado automáticamente (AGV) que integre una plataform
 
 ---
 
-## 🧰 Materiales y tecnologías principales
+## 📂 Áreas de desarrollo
 
-### Materiales electrónicos
+Cada área tiene su propia carpeta con un README que explica su contenido en detalle.
 
-| Componente | Descripción | Función |
-| :--- | :--- | :--- |
-| Raspberry Pi 5 (8 GB) | Computador de placa única | Procesamiento de alto nivel: visión artificial y toma de decisiones |
-| Cámara IMX219-160 | Cámara de 8 MP, 162° FOV, conexión CSI | Captura de la pista, AprilTags y obstáculos |
-| ESP32-S3 N16R8 | Microcontrolador de doble núcleo | Control de bajo nivel de motores y lectura de sensores |
-| Driver TB6612FNG | Puente H doble | Controla velocidad y sentido de giro de los dos motores |
-| Motorreductor JGY-370 (x2) | Motor 6 V, 100 RPM, con encoder | Tracción del vehículo y medición de giro de las ruedas |
-| Batería LiPo 7.4 V 5000 mAh | Batería de litio-polímero 2S | Fuente de energía de todo el sistema |
-| Regulador XL4016 | Convertidor DC-DC reductor (step-down) | Baja de 7.4 V a 5.1 V para la electrónica |
-| BMI270 | Unidad de medición inercial (SPI) | Mide giros y aceleraciones del vehículo |
-| VL53L1X (módulo TOF400C) | Sensor láser de distancia, hasta 4 m | Mide la distancia a obstáculos |
-| Celda de carga 3 kg + HX711 | Sensor de peso y conversor A/D de 24 bits | Detecta si hay carga sobre el vehículo |
-| Par infrarrojo (emisor/receptor) | LED IR y receptor IR | Intercambio de señales con las estaciones |
-| Pulsador de paro de emergencia | Pulsador normalmente abierto | Detiene los motores ante un riesgo |
-| Ventilador 5 V | Ventilador pequeño | Enfría el regulador XL4016 |
-| PCB M.A.V.I. | Placa de circuito impreso propia | Integra la distribución de potencia y las conexiones de señal |
-
-### Materiales mecánicos
-
-| Componente | Material | Método de fabricación | Observaciones |
-| :--- | :--- | :--- | :--- |
-| Chasis prototipo | MDF | Corte láser | Usado para validar medidas y montaje |
-| Chasis final | _(completar)_ | _(completar)_ | Modelo integral `v2` en Fusion 360 |
-| Soportes de motores | Resina / PLA | Impresión 3D (SLA / FDM) | Fijan los JGY-370 al chasis |
-| Acoples de rueda | Resina | Impresión 3D (SLA) | Unen el eje del motor con la rueda Mecanum |
-| Soportes de ruedas locas | PLA | Impresión 3D (FDM) | 4 puntos de apoyo |
-| Ruedas Mecanum 60 mm (x2) | Comercial | Compradas | Rodillos a 45° |
-| Ruedas locas (x4) | Comercial | Compradas | Estabilidad del vehículo |
-| Tornillería | Acero | Comercial | _(completar medidas)_ |
-
-### Herramientas utilizadas
-
-| Herramienta | Tipo | Función principal |
-| :--- | :--- | :--- |
-| Autodesk Fusion 360 | Software CAD / EDA | Diseño del chasis, piezas y PCB |
-| Arduino IDE | Entorno de programación | Firmware en C++ de la ESP32-S3 |
-| Python 3 | Lenguaje de programación | Visión artificial y comunicación en la Raspberry Pi 5 |
-| OpenCV + librería AprilTag | Librerías de visión | Detección de la pista y de los AprilTags |
-| Raspberry Pi OS | Sistema operativo | Base de la Raspberry Pi 5 |
-| Impresora 3D (SLA / FDM) | Máquina de fabricación | Fabricación de soportes y acoples |
-| Cortadora láser | Máquina de fabricación | Corte de piezas en MDF |
-| Multímetro / fuente de laboratorio | Instrumentos de medición | Pruebas eléctricas |
-| Git y GitHub | Control de versiones | Trabajo colaborativo y trazabilidad |
-| Microsoft Excel (Gantt) | Software de planeación | Cronograma y ruta crítica |
+| Carpeta | Qué contiene |
+| :--- | :--- |
+| 📄 [**documentación**](documentación/) | Acta de constitución, propuesta formal, cronograma (Gantt), ruta crítica (CPM) y bitácoras de planeación y ejecución. |
+| ⚡ [**diseño electrónico**](diseño%20electrónico/) | Diagrama de bloques, esquema electrónico, diseño de la PCB y evidencias de pruebas. |
+| 🔧 [**diseño mecánico**](diseño%20mecánico/) | Modelos CAD del chasis (versión inicial y modelo integral), listado de materiales y evidencias de fabricación. |
+| 💻 [**src**](src/) | Código fuente: firmware de la ESP32-S3 (C++), programas de la Raspberry Pi 5 (Python) y el protocolo I²C compartido. |
 
 ---
 
-## 📁 Áreas de desarrollo (estructura del repositorio)
+## 🧰 Materiales y tecnologías
 
-```text
-M.A.V.I./
-├── documentación/        → Planeación y gestión del proyecto
-├── diseño electrónico/   → Esquemas, PCB y evidencias de electrónica
-├── diseño mecánico/      → CAD del chasis y evidencias de fabricación
-├── src/                  → Código fuente (software)
-├── LICENSE
-└── README.md
-```
+<details>
+<summary><b>⚡ Materiales electrónicos</b> (clic para ver)</summary>
+<br>
 
-### 📄 Documentación / planeación
-Acta de constitución, propuesta formal, cronograma (`GANTT.xlsx`), ruta crítica (CPM) y bitácoras de planeación y ejecución (semanas 8 a 14), en normas APA 7.ª edición.
+| Componente | Descripción | Función |
+| :--- | :--- | :--- |
+| Raspberry Pi 5 (8 GB) | Computador de placa única | Visión artificial y toma de decisiones |
+| Cámara IMX219-160 | 8 MP, 162° de campo de visión, conexión CSI | Captura de la pista, AprilTags y obstáculos |
+| ESP32-S3 N16R8 | Microcontrolador de doble núcleo | Control de motores y lectura de sensores |
+| TB6612FNG | Driver de motores (puente H doble) | Controla velocidad y sentido de giro |
+| Motorreductor JGY-370 (x2) | 6 V, 100 RPM, con encoder | Tracción y medición del giro de las ruedas |
+| Batería LiPo 7.4 V 5000 mAh | Batería de litio-polímero 2S | Alimentación de todo el sistema |
+| XL4016 | Convertidor DC-DC reductor | Baja de 7.4 V a 5.1 V para la electrónica |
+| BMI270 | Unidad de medición inercial (SPI) | Mide giros y aceleraciones |
+| VL53L1X (módulo TOF400C) | Sensor láser de distancia (hasta 4 m) | Mide la distancia a obstáculos |
+| Celda de carga 3 kg + HX711 | Sensor de peso y conversor A/D | Detecta si hay carga sobre el vehículo |
+| Par infrarrojo | Emisor y receptor IR | Comunicación con las estaciones |
+| Pulsador de emergencia | Pulsador normalmente abierto | Detiene los motores ante un riesgo |
+| Ventilador 5 V | Ventilador pequeño | Enfría el regulador |
+| PCB M.A.V.I. | Placa de circuito impreso propia | Integra potencia y conexiones de señal |
 
-### ⚡ Diseño electrónico
-Diagrama de bloques, tabla de conexiones, esquema electrónico, diseño de la PCB (`PCB/mavi_pcb_diseno_integral.f3z`) y evidencias de pruebas (banco de pruebas de la ESP32, cámara, detección de AprilTags, reconocimiento de pista).
+</details>
 
-### 🔧 Diseño mecánico
-Modelos CAD (`v1_inicial/` y modelo integral `v2`), diseño conceptual con listado de materiales y evidencias de fabricación (MDF, impresión 3D, ensamble de ruedas).
+<details>
+<summary><b>🔧 Materiales mecánicos</b> (clic para ver)</summary>
+<br>
 
-### 💻 SRC (software)
+| Componente | Material | Método de fabricación | Observaciones |
+| :--- | :--- | :--- | :--- |
+| Chasis final | PLA | Impresión 3D (filamento) | Modelo integral diseñado en Fusion 360 |
+| Chasis de pruebas | MDF | Corte láser | Validación de medidas y montaje |
+| Soportes de motores | PLA / resina | Impresión 3D | Fijan los motores al chasis |
+| Acoples de rueda | Resina | Impresión 3D | Unen el eje del motor con la rueda Mecanum |
+| Soportes de ruedas locas | PLA | Impresión 3D | Cuatro puntos de apoyo |
+| Ruedas Mecanum 60 mm (x2) | Comercial | Compradas | Rodillos a 45° |
+| Ruedas locas (x4) | Comercial | Compradas | Estabilidad del vehículo |
 
-```text
-src/
-├── common/     → Protocolo I²C compartido: mapa de registros, protocol.py,
-│                 bus simulado (bus_falso.py) y pruebas
-├── esp32/      → Firmware C++: motores, encoders y báscula HX711
-└── raspberry/  → Python: maestro I²C y pruebas de comunicación con la ESP32
-```
+</details>
+
+<details>
+<summary><b>🛠️ Herramientas utilizadas</b> (clic para ver)</summary>
+<br>
+
+| Herramienta | Tipo | Función principal |
+| :--- | :--- | :--- |
+| Autodesk Fusion 360 | Software CAD / diseño electrónico | Diseño del chasis, piezas y PCB |
+| Arduino IDE | Entorno de programación | Firmware de la ESP32-S3 en C++ |
+| Python | Lenguaje de programación | Software de la Raspberry Pi 5 |
+| OpenCV | Librería de visión artificial | Detección de pista, AprilTags y obstáculos |
+| Visual Studio Code | Editor de código | Desarrollo y conexión remota a la Raspberry Pi 5 |
+| Git y GitHub | Control de versiones | Trabajo colaborativo y trazabilidad |
+| Impresora 3D | Máquina de fabricación | Chasis y piezas en PLA y resina |
+| Cortadora láser | Máquina de fabricación | Piezas de prueba en MDF |
+| Microsoft Word | Procesador de texto | Informe, artículo y manual de usuario |
+| Microsoft PowerPoint | Presentaciones | Exposiciones del proyecto |
+| Microsoft Excel | Hoja de cálculo | Cronograma (Gantt) |
+
+</details>
 
 ---
 
@@ -141,46 +139,60 @@ src/
 
 | Asignatura | Aporte al proyecto |
 | :--- | :--- |
-| **Programación** | Firmware de la ESP32-S3 (C++) y software de la Raspberry Pi 5 (Python) |
-| **Electrónica analógica y digital** | Acondicionamiento de sensores, lógica de 3.3 V, buses I²C y SPI |
-| **Electrónica de potencia** | Regulación de voltaje con el XL4016 y control de motores con el TB6612FNG |
-| **Inteligencia artificial** | Visión por computador para el seguimiento de pista y detección de obstáculos |
-| **Automatización industrial** | Concepto de AGV para logística interna y comunicación con estaciones |
-| **Dibujo técnico** | Modelado CAD, planos y ensamble del chasis |
+| Programación | Firmware en C++ y software en Python |
+| Electrónica analógica y digital | Sensores, lógica de 3.3 V y buses I²C y SPI |
+| Electrónica de potencia | Regulación de voltaje y control de motores |
+| Inteligencia artificial | Visión por computador para navegación y detección |
+| Automatización industrial | Concepto de AGV para logística interna |
+| Dibujo técnico | Modelado CAD y planos del chasis |
 
 ---
 
 ## 🌱 Beneficios esperados
 
-- Demostrar a escala cómo funciona el transporte interno automatizado usado en manufactura y logística.
-- Integrar en un solo prototipo lo aprendido en mecánica, electrónica, control, programación y visión artificial.
-- Dejar una arquitectura modular (Raspberry Pi 5 + ESP32-S3 por I²C) que otros equipos puedan reutilizar o ampliar.
-- Documentar todo el proceso (diseño, fabricación, pruebas y gestión) para que el proyecto sea replicable.
-- Fortalecer el trabajo en equipo y la gestión de proyectos con herramientas reales (Gantt, CPM, bitácoras).
+- Mostrar a escala cómo funciona el transporte interno automatizado en manufactura y logística.
+- Integrar en un solo prototipo mecánica, electrónica, control, programación y visión artificial.
+- Dejar una arquitectura modular (Raspberry Pi 5 + ESP32-S3 por I²C) que otros equipos puedan reutilizar.
+- Documentar todo el proceso para que el proyecto pueda replicarse.
 
 ---
 
-## 📊 Estado actual del proyecto
+## 📊 Estado actual
 
-| Módulo | Estado | Avance |
+| Módulo | Estado | Detalle |
 | :--- | :---: | :--- |
-| 🔧 Módulo mecánico | 🟡 En proceso | Chasis `v2` modelado; soportes y acoples impresos en 3D; ensamble de ruedas Mecanum y ruedas locas validado. |
-| ⚡ Módulo electrónico | 🟡 En proceso | Tabla de conexiones v3.2 y diagrama de bloques actualizados; PCB diseñada y enviada a fabricación. |
-| 🎛️ Módulo de control y software (SRC) | 🟡 En proceso | Comunicación I²C Raspberry Pi 5 → ESP32-S3 verificada; control de motores con encoders y báscula HX711 probados; detección de pista y AprilTags en fase de prueba. |
-| 📄 Módulo de documentación | 🟡 En proceso | Acta, propuesta, Gantt, CPM y bitácoras (semanas 8–14) completas; artículo en formato HardwareX en desarrollo. |
+| 🔧 Mecánico | 🟢 Finalizado | Chasis final impreso en PLA y ensamblado con ruedas Mecanum y ruedas locas. |
+| ⚡ Electrónico | 🟢 Finalizado | PCB fabricada, soldada y probada en el robot. |
+| 🎛️ Control y software | 🟡 En proceso | Las funciones ya se habían probado por separado. Al pasar a la PCB, la comunicación I²C falló; ya se recuperó y se está retomando la integración de todas las funciones y la interfaz de usuario. |
+| 📄 Documentación | 🟡 En proceso | Acta, propuesta, Gantt, CPM y bitácoras completas; artículo y manual de usuario en desarrollo. |
 
-> 🟢 Finalizado · 🟡 En proceso · 🔴 Pendiente
+<sub>🟢 Finalizado · 🟡 En proceso · 🔴 Pendiente</sub>
 
 ---
 
-## 🏅 Créditos
+## 👥 Equipo
 
-Proyecto desarrollado por **Juan Miguel Noreña, Sara Edith Perilla, Edwar Alfonso León y Laura Valentina Paramero**, estudiantes de Ingeniería Mecatrónica de la **Universidad Tecnológica de Pereira**, en el marco del Semestre Integrador 2026-2.
+| Integrante | Área |
+| :--- | :--- |
+| **Juan Miguel Noreña** | Líder técnico · Electrónica |
+| **Sara Edith Perilla** | Diseño mecánico |
+| **Edwar Alfonso León** | Programación |
+| **Laura Valentina Paramero** | Documentación |
 
-Agradecimientos a los docentes que acompañaron el proyecto: _(completar nombres completos)_.
+### Docentes
+
+| Docente | Asignatura |
+| :--- | :--- |
+| Edward Andrés González Ríos | Proyecto Integrador II |
+| Carlos Andrés Rodríguez Pérez | Proyecto Integrador I |
+| Angie Tatiana Rengifo Oviedo | Formación Integral |
 
 ---
 
 ## 📜 Licencia
 
-Este proyecto se distribuye bajo la licencia incluida en el archivo [`LICENSE`](LICENSE).
+Este proyecto se distribuye bajo la licencia **MIT**. Consulta el archivo [`LICENSE`](LICENSE) para más información.
+
+<div align="center">
+<sub>Universidad Tecnológica de Pereira · Ingeniería Mecatrónica · 2026</sub>
+</div>
