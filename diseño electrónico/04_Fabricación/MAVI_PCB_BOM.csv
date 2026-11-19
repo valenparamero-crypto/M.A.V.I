@@ -1,0 +1,16 @@
+Reference Designators;Quantity;Description;Package;Value;Manufacturer;Manufacturer Part Number;Vendor;Vendor Part Number;Top/Bottom
+;1;Board;Board;;;;;;
+BMI;1;PIN HEADER;1X07;PINHD-1X7;;;;;Top
+ENCODER-1, ENCODER-2;2;PIN HEADER;1X06;ENCODER;;;;;Top
+GALGA;1;4 Position Wire to Board Terminal Block Horizontal with Board;TERMBLK_508-4N;CC282837-4;TE Connectivity AMP Connectors ;282837-4;;;Top
+IN-5, IN-12, OUTPUT-12;3;2 Position Wire to Board Terminal Block Horizontal with Board;TERMBLK_508-2N;VOLTAJE282837-2;TE Connectivity AMP Connectors;282837-2;;;Top
+JP1;1;PIN HEADER;2X20;PINHD-2X20;;;;;Top
+R1, R2;2;10k? resistor;AXIAL-0.3;10k;;;;;Bottom
+S1;1;OMRON SWITCH;B3F-10XX;;;B3F-1000;;;Top
+TRASMISOR;1;VH Connector Top Entry - 2POS-3.96MM;B2P-VH_396-2N;B2P-VH;JST Sales America Inc.;B2P-VH;;;Top
+U$1;1;;TB6612FNG;TB6612DEFINITIVO;;;;;Top
+U$2;1;;ESP32-S3;ESP32-S3;;;;;Top
+U$3;1;;HX711;HX711;;;;;Top
+VL53L1;1;PIN HEADER;1X06;PINHD-1X6;;;;;Top
+VOLTAJES;1;4 Position Wire to Board Terminal Block Horizontal with Board;TERMBLK_508-4N;2828XX-4282837-4;TE Connectivity AMP Connectors ;282837-4;;;Top
+X1;1;WAGO SREW CLAMP;W237-132;;;;;;Top
