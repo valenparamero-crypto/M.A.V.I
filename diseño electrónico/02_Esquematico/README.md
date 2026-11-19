@@ -6,7 +6,7 @@
 ![Eagle](https://img.shields.io/badge/Eagle-1F6FB2?style=for-the-badge)
 ![PDF](https://img.shields.io/badge/PDF-EC1C24?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)
 
-Esquema eléctrico de la PCB de M.A.V.I., que representa con símbolos normalizados cada componente del circuito y las conexiones eléctricas entre ellos. Es el punto de partida a partir del cual se diseñó la placa.
+Esquema eléctrico de la PCB de M.A.V.I., que representa con símbolos cada componente del circuito y las conexiones eléctricas entre ellos. Es el punto de partida a partir del cual se diseñó la placa.
 
 </div>
 
@@ -16,7 +16,7 @@ Esquema eléctrico de la PCB de M.A.V.I., que representa con símbolos normaliza
 
 ![PDF](https://img.shields.io/badge/PDF-EC1C24?style=flat-square&logo=adobeacrobatreader&logoColor=white) **MAVI_PCB_ESQUEMATICO.pdf**
 
-Versión en PDF del esquema eléctrico completo. Permite revisar los componentes que conforman el circuito, sus valores y la forma en que se conectan, sin necesidad de instalar ningún programa. Es útil para analizar el funcionamiento del circuito o diagnosticar fallas. Se visualiza directamente en GitHub.
+Esquema eléctrico completo en una hoja tamaño A3. El circuito está organizado en tres bloques: **CONTROL**, con la ESP32-S3; **CONTROL-POT**, con el driver TB6612FNG, los conectores de los encoders y las borneras de potencia; y **GALGA**, con el módulo HX711 y la conexión de la celda de carga. Incluye también los conectores de la Raspberry Pi 5, el sensor VL53L1X, el BMI270, el transmisor infrarrojo y el pulsador. Permite analizar el funcionamiento del circuito o diagnosticar fallas sin instalar ningún programa, ya que se visualiza directamente en GitHub.
 
 ---
 
