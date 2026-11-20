@@ -20,94 +20,110 @@ Sistema electrónico de M.A.V.I., integrado en una placa de circuito impreso pro
 
 ### 🧠 Arquitectura
 
-El sistema se organiza en dos niveles de procesamiento que trabajan de forma coordinada:
+El sistema trabaja en dos niveles. La **Raspberry Pi 5** procesa la imagen de la cámara, identifica la pista, los AprilTags y los obstáculos, y decide hacia dónde moverse. La **ESP32-S3** recibe esas órdenes, controla los motores y lee de forma continua los sensores del vehículo.
 
-**Alto nivel — Raspberry Pi 5.** Procesa en tiempo real la imagen de la cámara para identificar la pista, los AprilTags de las estaciones y los obstáculos, y con esa información toma las decisiones de navegación.
+```mermaid
+flowchart LR
+    CAM[📷 Cámara IMX219] -->|CSI| RPI[🍓 Raspberry Pi 5]
+    RPI <-->|I²C · GPIO 8 / 9| ESP[🧠 ESP32-S3]
+    ESP -->|PWM · GPIO 10–16| DRV[⚙️ Driver TB6612FNG]
+    DRV --> MOT[🔄 Motores JGY-370]
+    MOT -->|Encoders · GPIO 4, 5, 7, 17| ESP
+    BMI[🧭 BMI270] -->|SPI| ESP
+    TOF[📏 VL53L1X] -->|I²C secundario · GPIO 40 / 41| ESP
+    HX[⚖️ HX711 + celda de carga] -->|GPIO 19 / 20| ESP
+    IR[📡 Par infrarrojo] <-->|GPIO 1 / 2| ESP
+    FC[🛑 Final de carrera] -->|GPIO 48| ESP
+```
 
-**Bajo nivel — ESP32-S3.** Recibe las órdenes de la Raspberry Pi 5 a través del bus I²C, controla la velocidad y el sentido de giro de los motores y lee de forma continua los sensores del vehículo.
+La asignación completa de pines se encuentra en la [Tabla de conexiones](01_Diagramas_Conexion/Tabla_de_Conexiones.pdf).
 
 ---
 
-### 🔋 Distribución de energía
+### 🔋 Alimentación
 
-```text
-Batería LiPo 7.4 V ──► Interruptor de llave ──┬──► Driver TB6612FNG ──► Motores (7.4 V)
-                                              └──► Regulador XL4016 ──► 5.1 V
-                                                                         ├──► Raspberry Pi 5
-                                                                         ├──► ESP32-S3 ──► 3.3 V para sensores
-                                                                         ├──► Lógica del driver
-                                                                         └──► Ventilador
+```mermaid
+flowchart LR
+    BAT[🔋 Batería LiPo 7.4 V] --> KEY[🔑 Interruptor de llave]
+    KEY --> DRV[⚙️ Driver TB6612FNG]
+    KEY --> REG[⚡ Regulador XL4016]
+    DRV --> MOT[🔄 Motores]
+    REG -->|5.1 V| RPI[🍓 Raspberry Pi 5]
+    REG -->|5.1 V| ESP[🧠 ESP32-S3]
+    REG -->|5.1 V| FAN[🌀 Ventilador]
+    ESP -->|3.3 V| SEN[📟 Sensores]
 ```
 
-La batería alimenta directamente a los motores a través del driver, mientras que el regulador reduce el voltaje a 5.1 V para las tarjetas de procesamiento. Los sensores operan a 3.3 V, suministrados por la ESP32-S3.
+El sistema maneja tres niveles de voltaje:
+
+- `7.4 V` — Potencia de los motores, entregada por la batería a través del driver.
+- `5.1 V` — Raspberry Pi 5, ESP32-S3, lógica del driver y ventilador, a partir del regulador XL4016.
+- `3.3 V` — Encoders, BMI270, VL53L1X, HX711 y receptor infrarrojo, desde la ESP32-S3.
+
+---
+
+### 🟩 La placa
+
+`2 capas` `1.6 mm` `99.45 × 118.35 mm` `Máscara negra` `Diseñada en Fusion 360` `Fabricada en JLCPCB`
+
+La PCB reemplaza el cableado en protoboard por conexiones fijas y ordenadas. Cada conector está identificado en la serigrafía de la placa:
+
+- `VOLTAJES` · `IN-5` · `IN-12` · `OUTPUT-12` — Entrada y distribución de potencia.
+- `ENCODER-1` · `ENCODER-2` — Encoders de los motores.
+- `BMI` · `VL53L1` — Giroscopio y sensor láser.
+- `GALGA` — Celda de carga, conectada al módulo HX711.
+- `TRASMISOR` · `X1` — Emisor y receptor infrarrojo.
+- `JP1` — Conector de 40 pines hacia la Raspberry Pi 5.
+- `S1` — Paro de emergencia.
 
 ---
 
 ### 🧩 Componentes
 
-#### Procesamiento
+#### 🧠 Procesamiento
+- **Raspberry Pi 5** `8 GB` — Visión artificial y toma de decisiones.
+- **ESP32-S3** `N16R8` — Control de motores y lectura de sensores.
 
-**Raspberry Pi 5 (8 GB)** — Computador de placa única encargado de la visión artificial y la toma de decisiones del vehículo.
+#### 🔋 Potencia
+- **Batería LiPo** `7.4 V · 5000 mAh` — Fuente de energía del sistema.
+- **Interruptor de llave** `ON / OFF` — Encendido general; la llave evita activaciones accidentales.
+- **Regulador XL4016** `7.4 V → 5.1 V` — Alimentación de la electrónica de control.
+- **Ventilador** `5 V` — Disipa el calor del regulador.
 
-**ESP32-S3 N16R8** — Microcontrolador de doble núcleo responsable del control de los motores y la lectura de los sensores.
+#### ⚙️ Actuadores
+- **Driver TB6612FNG** `Puente H doble` — Controla velocidad y sentido de giro de los motores.
+- **Motorreductores JGY-370** `6 V · 100 RPM · x2` — Mueven las ruedas; sus encoders miden el giro de cada una.
 
-#### Potencia y alimentación
+#### 📟 Sensores
+- **Cámara IMX219-160** `8 MP · 162°` — Captura la pista, los AprilTags y los obstáculos.
+- **Giroscopio BMI270** `SPI` — Mide giros y aceleraciones del vehículo.
+- **Sensor láser VL53L1X** `Hasta 4 m` — Mide la distancia a los obstáculos.
+- **Celda de carga + HX711** `3 kg · 24 bits` — Detecta si hay carga sobre la plataforma.
+- **Par infrarrojo** `Emisor + receptor` — Intercambio de señales con las estaciones.
 
-**Batería LiPo 7.4 V · 5000 mAh** — Fuente de energía de todo el sistema.
+#### 🛑 Seguridad
+- **Final de carrera** `Parachoques` — Detiene los motores de inmediato ante un impacto.
 
-**Interruptor de llave** — Enciende y apaga el sistema completo. Al requerir una llave, evita encendidos accidentales.
-
-**Regulador XL4016** — Convertidor DC-DC reductor que baja el voltaje de 7.4 V a 5.1 V para la electrónica de control.
-
-**Ventilador 5 V** — Disipa el calor generado por el regulador de voltaje.
-
-#### Actuadores
-
-**Driver TB6612FNG** — Puente H doble que controla la velocidad y el sentido de giro de los dos motores mediante señales PWM de la ESP32-S3.
-
-**Motorreductores JGY-370 con encoder (x2)** — Motores de 6 V y 100 RPM que mueven las ruedas del vehículo. Sus encoders miden el giro de cada rueda para controlar el desplazamiento.
-
-#### Sensores
-
-**Cámara IMX219-160** — Cámara de 8 MP con un campo de visión de 162°, conectada a la Raspberry Pi 5. Captura la pista, los AprilTags y los obstáculos.
-
-**Giroscopio BMI270** — Unidad de medición inercial que registra los giros y las aceleraciones del vehículo.
-
-**Sensor láser VL53L1X** — Sensor de distancia por tiempo de vuelo, con un alcance de hasta 4 m. Mide la distancia a los obstáculos detectados por la cámara.
-
-**Celda de carga 3 kg y módulo HX711** — La celda detecta el peso sobre la plataforma y el HX711 convierte su señal analógica en un valor digital, lo que permite saber si el vehículo transporta carga.
-
-**Par infrarrojo** — Emisor y receptor que permiten el intercambio de señales entre el vehículo y las estaciones de carga y descarga.
-
-#### Seguridad
-
-**Final de carrera** — Interruptor con palanca metálica ubicado en el parachoques. Al producirse un impacto, se activa y detiene los motores de inmediato.
-
-#### Conexión y componentes pasivos
-
-**Borneras de tornillo** — Conectores que aseguran de forma firme los cables de potencia, de la celda de carga y del transmisor infrarrojo.
-
-**Conectores tipo header** — Pines para la conexión de los encoders y los sensores, y de la Raspberry Pi 5 mediante un conector de 40 pines.
-
-**Resistencias de 10 kΩ (x2)** — Ubicadas en la cara inferior de la placa, forman parte del acondicionamiento de las señales del circuito.
-
-**Trimmer** — Potenciómetro de ajuste ubicado junto a la conexión del transmisor infrarrojo.
-
-**Cable plano con conector IDC** — Cable multicolor que comunica la PCB con la Raspberry Pi 5.
-
-**Cable de potencia de silicona** — Cable rojo y negro que conduce la corriente desde la batería hacia el regulador y el driver.
+#### 🔌 Conexión y pasivos
+- **Borneras de tornillo** — Sujeción firme de los cables de potencia, la celda de carga y el transmisor.
+- **Conectores tipo header** — Conexión de encoders, sensores y Raspberry Pi 5.
+- **Resistencia R1** `10 kΩ` — En serie con el emisor infrarrojo, limita su corriente.
+- **Resistencia R2** `10 kΩ` — Entre la señal del receptor infrarrojo y tierra, estabiliza la lectura.
+- **Trimmer** `Potenciómetro de ajuste` — Regula la corriente del emisor infrarrojo para ajustar la intensidad de la señal.
+- **Cable plano con conector IDC** — Comunica la PCB con la Raspberry Pi 5.
+- **Cable de potencia de silicona** — Lleva la corriente de la batería al regulador y al driver.
 
 ---
 
 ### 📂 Contenido de la carpeta
 
-📐 **[01_Diagramas_Conexion](01_Diagramas_Conexion/)** — Árbol de conexiones y tabla de conexiones pin a pin del sistema.
+📐 **[01_Diagramas_Conexion](01_Diagramas_Conexion/)** — Árbol de conexiones y tabla de conexiones pin a pin.
 
-🔌 **[02_Esquematico](02_Esquematico/)** — Esquema eléctrico de la placa en Fusion 360, formato Eagle y PDF.
+🔌 **[02_Esquematico](02_Esquematico/)** — Esquema eléctrico en Fusion 360, formato Eagle y PDF.
 
 🟩 **[03_Diseno_PCB](03_Diseno_PCB/)** — Diseño de la placa, modelo 3D e imágenes renderizadas.
 
-🏭 **[04_Fabricacion](04_Fabricacion/)** — Archivos Gerber para fabricación y lista de materiales (BOM).
+🏭 **[04_Fabricacion](04_Fabricacion/)** — Archivos Gerber y lista de materiales (BOM).
 
 📷 **[05_Evidencias](05_Evidencias/)** — Registro fotográfico de la placa fabricada.
 
@@ -115,11 +131,7 @@ La batería alimenta directamente a los motores a través del driver, mientras q
 
 ### 📊 Estado del módulo
 
-✅ Diagramas y tabla de conexiones
-✅ Esquemático
-✅ Diseño de la PCB
-✅ Fabricación en JLCPCB
-✅ Soldadura y pruebas en el robot
+✅ Diagramas y tabla de conexiones · ✅ Esquemático · ✅ Diseño de la PCB · ✅ Fabricación · ✅ Soldadura y pruebas
 
 ---
 
