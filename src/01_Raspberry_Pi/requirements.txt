@@ -1,0 +1,8 @@
+# Librerías de Python necesarias para ejecutar mavi_carril_tags.py en la Raspberry Pi 5
+# Instalación: pip install -r requirements.txt
+
+numpy                  # Cálculos numéricos sobre las imágenes
+opencv-python>=4.7     # Visión artificial: detección del carril y de AprilTags (módulo aruco)
+smbus2                 # Comunicación I2C con la ESP32-S3
+flask                  # Servidor de la interfaz web de control y calibración
+picamera2              # Control de la cámara IMX219 (en Raspberry Pi OS se recomienda: sudo apt install python3-picamera2)

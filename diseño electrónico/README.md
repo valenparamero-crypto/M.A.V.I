@@ -36,7 +36,7 @@ flowchart LR
     FC[🛑 Final de carrera] -->|GPIO 48| ESP
 ```
 
-La asignación completa de pines se encuentra en la [Tabla de conexiones](01_Diagramas_Conexion/Tabla_de_Conexiones.pdf).
+La asignación completa de pines se encuentra en la [Tabla de Conexiones](01_Diagramas_Conexion/Tabla_de_Conexiones.pdf).
 
 ---
 
@@ -117,7 +117,7 @@ La PCB reemplaza el cableado en protoboard por conexiones fijas y ordenadas. Cad
 
 ### 📂 Contenido de la carpeta
 
-📐 **[01_Diagramas_Conexion](01_Diagramas_Conexion/)** — Árbol de conexiones y tabla de conexiones pin a pin.
+📐 **[01_Diagramas_Conexion](01_Diagramas/)** — Árbol de conexiones y tabla de conexiones pin a pin.
 
 🔌 **[02_Esquematico](02_Esquematico/)** — Esquema eléctrico en Fusion 360, formato Eagle y PDF.
 
