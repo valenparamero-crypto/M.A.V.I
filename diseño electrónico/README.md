@@ -1,33 +1,34 @@
 <div align="center">
 
-# ⚡ Diseño electrónico — M.A.V.I.
+# ⚡ Diseño electrónico
 
-*Distribución de potencia, control de motores e integración de sensores*
+![Fusion 360](https://img.shields.io/badge/Fusion%20360-FF6A00?style=for-the-badge&logo=autodesk&logoColor=white)
+![ESP32-S3](https://img.shields.io/badge/ESP32--S3-E7352C?style=for-the-badge&logo=espressif&logoColor=white)
+![Raspberry Pi 5](https://img.shields.io/badge/Raspberry%20Pi%205-C51A4A?style=for-the-badge&logo=raspberrypi&logoColor=white)
+![JLCPCB](https://img.shields.io/badge/Fabricado%20en-JLCPCB-1F6FB2?style=for-the-badge)
+![Estado](https://img.shields.io/badge/Estado-Finalizado-2EA44F?style=for-the-badge)
 
-![Estado](https://img.shields.io/badge/Estado-Finalizado-brightgreen)
-![Fusion 360](https://img.shields.io/badge/Fusion%20360-FF6A00?logo=autodesk&logoColor=white)
-![ESP32-S3](https://img.shields.io/badge/ESP32--S3-E7352C?logo=espressif&logoColor=white)
-![Raspberry Pi 5](https://img.shields.io/badge/Raspberry%20Pi-5-C51A4A?logo=raspberrypi&logoColor=white)
+Sistema electrónico de M.A.V.I., integrado en una placa de circuito impreso propia que concentra la distribución de potencia, el control de los motores y la conexión de todos los sensores del vehículo.
 
-<img src="03_Diseno_PCB/MAVI_PCB_3D_SUPERIOR.png" width="45%">
-&nbsp;
-<img src="03_Diseno_PCB/MAVI_PCB_3D_INFERIOR.png" width="45%">
+<img src="05_Evidencias/pcb_montada_soldada.png" width="70%">
 
-<sub>Modelo 3D de la PCB — vista superior e inferior</sub>
+<sub>PCB de M.A.V.I. fabricada y soldada</sub>
 
 </div>
 
 ---
 
-## 📌 Descripción
+### 🧠 Arquitectura
 
-El sistema electrónico de M.A.V.I. se integra en una **PCB propia** diseñada en Autodesk Fusion 360. La placa concentra la distribución de potencia, el driver de los motores y los conectores de todos los sensores, lo que reemplaza el cableado en protoboard por una conexión ordenada y confiable.
+El sistema se organiza en dos niveles de procesamiento que trabajan de forma coordinada:
 
-La arquitectura se divide en dos niveles:
-- **Alto nivel — Raspberry Pi 5:** procesa la imagen de la cámara y toma las decisiones de navegación.
-- **Bajo nivel — ESP32-S3:** controla los motores y lee los sensores. Recibe las órdenes de la Raspberry Pi 5 por I²C.
+**Alto nivel — Raspberry Pi 5.** Procesa en tiempo real la imagen de la cámara para identificar la pista, los AprilTags de las estaciones y los obstáculos, y con esa información toma las decisiones de navegación.
 
-### Distribución de energía
+**Bajo nivel — ESP32-S3.** Recibe las órdenes de la Raspberry Pi 5 a través del bus I²C, controla la velocidad y el sentido de giro de los motores y lee de forma continua los sensores del vehículo.
+
+---
+
+### 🔋 Distribución de energía
 
 ```text
 Batería LiPo 7.4 V ──► Interruptor de llave ──┬──► Driver TB6612FNG ──► Motores (7.4 V)
@@ -38,97 +39,87 @@ Batería LiPo 7.4 V ──► Interruptor de llave ──┬──► Driver TB6
                                                                          └──► Ventilador
 ```
 
----
-
-## 🧩 Componentes electrónicos
-
-### Procesamiento
-
-| Componente | Descripción | Función |
-| :--- | :--- | :--- |
-| Raspberry Pi 5 (8 GB) | Computador de placa única | Visión artificial y toma de decisiones |
-| ESP32-S3 N16R8 | Microcontrolador de doble núcleo | Control de motores y lectura de sensores |
-
-### Potencia y alimentación
-
-| Componente | Descripción | Función |
-| :--- | :--- | :--- |
-| Batería LiPo 7.4 V 5000 mAh | Batería de litio-polímero 2S | Alimentación de todo el sistema |
-| Interruptor de llave | Interruptor ON/OFF con llave | Enciende y apaga todo el sistema |
-| Regulador XL4016 | Convertidor DC-DC reductor | Baja el voltaje de 7.4 V a 5.1 V |
-| Ventilador 5 V | Ventilador pequeño | Enfría el regulador |
-
-### Actuadores
-
-| Componente | Descripción | Función |
-| :--- | :--- | :--- |
-| Driver TB6612FNG | Puente H doble | Controla velocidad y sentido de giro de los motores |
-| Motorreductor JGY-370 (x2) | Motor 6 V, 100 RPM, con encoder | Mueve las ruedas y mide su giro |
-
-### Sensores
-
-| Componente | Descripción | Función |
-| :--- | :--- | :--- |
-| Cámara IMX219-160 | 8 MP, 162° de campo de visión, conexión CSI | Captura de la pista, AprilTags y obstáculos |
-| Giroscopio BMI270 | Unidad de medición inercial (SPI) | Mide giros y aceleraciones del vehículo |
-| Sensor láser VL53L1X | Sensor de distancia por tiempo de vuelo, hasta 4 m | Mide la distancia a obstáculos |
-| Celda de carga 3 kg | Galga extensiométrica | Detecta el peso sobre el vehículo |
-| Módulo HX711 | Conversor analógico-digital de 24 bits | Convierte la señal de la celda de carga |
-| Par infrarrojo | Emisor y receptor IR | Comunicación con las estaciones |
-
-### Seguridad
-
-| Componente | Descripción | Función |
-| :--- | :--- | :--- |
-| Sensor de impacto (bumper) | Interruptor ubicado en el parachoques | Detiene los motores de inmediato si el vehículo choca |
-
-### Componentes pasivos y conexión
-
-| Componente | Descripción | Función |
-| :--- | :--- | :--- |
-| PCB M.A.V.I. | Placa de circuito impreso propia | Integra potencia y señales en una sola tarjeta |
-| Borneras de tornillo | Conectores de 2 terminales | Conexión firme de cables de potencia y sensores |
-| Conectores tipo header | Pines macho y hembra | Conexión de módulos, encoders y sensores |
-| Trimmer _(confirmar valor)_ | Potenciómetro de ajuste | _(confirmar función)_ |
-| Resistencia _(confirmar valor)_ | Resistencia de carbón | _(confirmar función)_ |
-| Cable plano (cable cinta) con conector IDC | Cable multicolor | Conexión entre la PCB y la Raspberry Pi 5 |
-| Cable de potencia de silicona | Cable rojo y negro, calibre _(confirmar)_ AWG | Lleva la corriente de la batería al regulador y al driver |
-
-La lista completa de componentes de la placa está en el archivo [BOM](04_Fabricacion/MAVI_PCB_BOM.csv), y la conexión pin a pin en la [Tabla de conexiones](01_Diagramas_Conexion/Tabla_de_Conexiones.pdf).
+La batería alimenta directamente a los motores a través del driver, mientras que el regulador reduce el voltaje a 5.1 V para las tarjetas de procesamiento. Los sensores operan a 3.3 V, suministrados por la ESP32-S3.
 
 ---
 
-## 📂 Contenido de la carpeta
+### 🧩 Componentes
 
-| Carpeta | Archivos | Para qué sirve |
-| :--- | :--- | :--- |
-| 📐 [01_Diagramas_Conexion](01_Diagramas_Conexion/) | Árbol de conexiones · Tabla de conexiones | Muestran qué se conecta con qué y en qué pin |
-| 🔌 [02_Esquematico](02_Esquematico/) | `.fsch` (Fusion) · `.sch` (Eagle) · `.pdf` | Esquema eléctrico de la placa |
-| 🟩 [03_Diseno_PCB](03_Diseno_PCB/) | `.fbrd` (Fusion) · `.brd` (Eagle) · `.pdf` · modelo 3D `.step` · imágenes 3D | Diseño de la placa y su modelo 3D |
-| 🏭 [04_Fabricacion](04_Fabricacion/) | Gerber `.zip` · BOM `.csv` | Archivos para fabricar la PCB y lista de componentes |
-| 📷 [05_Evidencias](05_Evidencias/) | Fotografías | Registro de la PCB soldada |
+#### Procesamiento
 
-> 💡 Los archivos `.pdf` se pueden ver directamente en GitHub sin instalar ningún programa.
+**Raspberry Pi 5 (8 GB)** — Computador de placa única encargado de la visión artificial y la toma de decisiones del vehículo.
+
+**ESP32-S3 N16R8** — Microcontrolador de doble núcleo responsable del control de los motores y la lectura de los sensores.
+
+#### Potencia y alimentación
+
+**Batería LiPo 7.4 V · 5000 mAh** — Fuente de energía de todo el sistema.
+
+**Interruptor de llave** — Enciende y apaga el sistema completo. Al requerir una llave, evita encendidos accidentales.
+
+**Regulador XL4016** — Convertidor DC-DC reductor que baja el voltaje de 7.4 V a 5.1 V para la electrónica de control.
+
+**Ventilador 5 V** — Disipa el calor generado por el regulador de voltaje.
+
+#### Actuadores
+
+**Driver TB6612FNG** — Puente H doble que controla la velocidad y el sentido de giro de los dos motores mediante señales PWM de la ESP32-S3.
+
+**Motorreductores JGY-370 con encoder (x2)** — Motores de 6 V y 100 RPM que mueven las ruedas del vehículo. Sus encoders miden el giro de cada rueda para controlar el desplazamiento.
+
+#### Sensores
+
+**Cámara IMX219-160** — Cámara de 8 MP con un campo de visión de 162°, conectada a la Raspberry Pi 5. Captura la pista, los AprilTags y los obstáculos.
+
+**Giroscopio BMI270** — Unidad de medición inercial que registra los giros y las aceleraciones del vehículo.
+
+**Sensor láser VL53L1X** — Sensor de distancia por tiempo de vuelo, con un alcance de hasta 4 m. Mide la distancia a los obstáculos detectados por la cámara.
+
+**Celda de carga 3 kg y módulo HX711** — La celda detecta el peso sobre la plataforma y el HX711 convierte su señal analógica en un valor digital, lo que permite saber si el vehículo transporta carga.
+
+**Par infrarrojo** — Emisor y receptor que permiten el intercambio de señales entre el vehículo y las estaciones de carga y descarga.
+
+#### Seguridad
+
+**Final de carrera** — Interruptor con palanca metálica ubicado en el parachoques. Al producirse un impacto, se activa y detiene los motores de inmediato.
+
+#### Conexión y componentes pasivos
+
+**Borneras de tornillo** — Conectores que aseguran de forma firme los cables de potencia, de la celda de carga y del transmisor infrarrojo.
+
+**Conectores tipo header** — Pines para la conexión de los encoders y los sensores, y de la Raspberry Pi 5 mediante un conector de 40 pines.
+
+**Resistencias de 10 kΩ (x2)** — Ubicadas en la cara inferior de la placa, forman parte del acondicionamiento de las señales del circuito.
+
+**Trimmer** — Potenciómetro de ajuste ubicado junto a la conexión del transmisor infrarrojo.
+
+**Cable plano con conector IDC** — Cable multicolor que comunica la PCB con la Raspberry Pi 5.
+
+**Cable de potencia de silicona** — Cable rojo y negro que conduce la corriente desde la batería hacia el regulador y el driver.
 
 ---
 
-## 📷 La placa real
+### 📂 Contenido de la carpeta
 
-<div align="center">
-<img src="05_Evidencias/pcb_montada_soldada.png" width="70%">
-</div>
+📐 **[01_Diagramas_Conexion](01_Diagramas_Conexion/)** — Árbol de conexiones y tabla de conexiones pin a pin del sistema.
+
+🔌 **[02_Esquematico](02_Esquematico/)** — Esquema eléctrico de la placa en Fusion 360, formato Eagle y PDF.
+
+🟩 **[03_Diseno_PCB](03_Diseno_PCB/)** — Diseño de la placa, modelo 3D e imágenes renderizadas.
+
+🏭 **[04_Fabricacion](04_Fabricacion/)** — Archivos Gerber para fabricación y lista de materiales (BOM).
+
+📷 **[05_Evidencias](05_Evidencias/)** — Registro fotográfico de la placa fabricada.
 
 ---
 
-## 📊 Estado
+### 📊 Estado del módulo
 
-| Etapa | Estado |
-| :--- | :---: |
-| Diagramas y tabla de conexiones | 🟢 |
-| Esquemático | 🟢 |
-| Diseño de la PCB | 🟢 |
-| Fabricación | 🟢 |
-| Soldadura y pruebas en el robot | 🟢 |
+✅ Diagramas y tabla de conexiones
+✅ Esquemático
+✅ Diseño de la PCB
+✅ Fabricación en JLCPCB
+✅ Soldadura y pruebas en el robot
 
 ---
 
