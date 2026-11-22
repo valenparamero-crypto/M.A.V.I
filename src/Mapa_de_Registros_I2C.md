@@ -16,7 +16,7 @@ Define el lenguaje con el que se comunican la Raspberry Pi 5 y la ESP32-S3. Cada
 
 - **Maestro** `Raspberry Pi 5` — Inicia toda la comunicación: envía órdenes y solicita datos.
 - **Esclavo** `ESP32-S3` — Responde en la dirección `0x08`.
-- **Bus** `I²C 1` — Raspberry Pi 5: `GPIO 2 (SDA)` · `GPIO 3 (SCL)` ↔ ESP32-S3: `GPIO 8 (SDA)` · `GPIO 9 (SCL)`.
+- **Bus** `I²C 1` — Raspberry Pi 5: `GPIO 2 (SDA)` · `GPIO 3 (SCL)` ↔ ESP32-S3: `GPIO 9 (SDA)` · `GPIO 8 (SCL)`.
 
 ---
 
