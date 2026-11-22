@@ -38,7 +38,7 @@ checksum = (byte 1 + byte 2 + ... + byte n) & 0xFF
 [ 1 | valor | checksum ]
 ```
 
-Activa o desactiva el sistema de movimiento. `valor = 1` al iniciar el programa y `valor = 0` al cerrarlo.
+Se envía al iniciar el programa (`valor = 1`) y al cerrarlo (`valor = 0`). Al recibirlo, la ESP32-S3 detiene los motores para que el vehículo arranque y termine siempre en reposo.
 
 #### Registro 2 · Dirección
 

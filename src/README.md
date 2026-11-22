@@ -40,6 +40,8 @@ Ambas tarjetas se comunican por I²C siguiendo un protocolo propio, documentado 
 
 🍓 **[01_Raspberry_Pi](01_Raspberry_Pi/)** — Programa principal de visión y navegación: seguimiento del carril, controlador PID, reconocimiento de AprilTags e interfaz web de control y calibración.
 
+🧠 **[02_ESP32](02_ESP32/)** — Firmware de control de motores, medición de velocidad con encoders y vigilancia de la conexión I²C.
+
 🔗 **[Mapa_de_Registros_I2C.md](Mapa_de_Registros_I2C.md)** — Protocolo de comunicación entre la Raspberry Pi 5 y la ESP32-S3: estructura de los mensajes, registros disponibles y verificación de datos.
 
 ---
