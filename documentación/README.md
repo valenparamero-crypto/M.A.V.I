@@ -1,32 +1,42 @@
-# 📄 Documentación — M.A.V.I.
+<div align="center">
 
-> *Módulo Autónomo de Visión Inteligente*
+# 📄 Documentación
 
-Esta carpeta centraliza la documentación formal del proyecto M.A.V.I. Contiene la formulación técnica, la planificación de actividades, los registros de bitácoras y el presupuesto detallado elaborado bajo las normas APA 7ma edición.
+![ISO 21500](https://img.shields.io/badge/Metodolog%C3%ADa-ISO%2021500-1F6FB2?style=for-the-badge)
+![CPM](https://img.shields.io/badge/Ruta%20cr%C3%ADtica-CPM-8250DF?style=for-the-badge)
+![APA 7](https://img.shields.io/badge/Normas-APA%207-2EA44F?style=for-the-badge)
 
----
+Gestión del proyecto M.A.V.I.: documentos de formulación, planeación del tiempo y registro semanal del avance, elaborados bajo los lineamientos de la norma ISO 21500 para la dirección de proyectos.
 
-## 📁 Estructura y Contenido de la Carpeta
+`57 actividades` `4 roles` `1.368 horas de trabajo` `17 hitos de entrega` `14 sep – 1 dic 2026`
 
-```text
-documentación/
-├── ACTA DE CONSTITUCIÓN.pdf                        # Documento base y acta de inicio del proyecto
-├── BITÁCORA DE PLANEACIÓN SEMANA 10 Y 11.pdf         # Planeación de actividades técnicas y administrativas (Semanas 10 y 11)
-├── BITÁCORA DE PLANEACIÓN SEMANA 12-13-14.pdf      # Planeación estratégica para las semanas 12 a 14
-├── GANTT.xlsx                                      # Cronograma detallado y estimación de carga horaria
-├── PLANEACIÓN BITÁCORA SEMANA 8 Y 9.pdf              # Registro preliminar de planeación (Semanas 8 y 9)
-├── PLANEACIÓN Y EJECUCIÓN BITÁCORA SEMANA 8 Y 9.pdf  # Bitácora consolidada de planeación y ejecución (Semanas 8 y 9)
-├── PLANEACIÓN Y EJECUCIÓN BITÁCORA SEMANA 10 Y 11.pdf  # Bitácora consolidada de planeación y ejecución (Semanas 10 y 11)
-├── PROPUESTA FORMAL.pdf                            # Propuesta técnica formal del sistema autónomo
-├── README.md                                       # Índice y presentación de la carpeta de documentación
-└── Ruta_Critica_CPM.png                            # Diagrama CPM de precedencias, ruta crítica activa y holguras
-```  
+</div>
 
 ---
 
-## 👤 Responsable
+### 🧭 Gestión del proyecto
 
-**Laura Valentina Paramero Lopez** — *Rol: Documentación*  
+El proyecto se organiza en **cuatro roles**: Mecánica, Electrónica, Programación y Documentación. Los integrantes rotan entre ellos para que todos desarrollen competencias en las cuatro áreas del perfil mecatrónico.
 
-*Formación Integral · Proyecto Integrador I · Proyecto Integrador II*  
-*Ingeniería Mecatrónica · Universidad Tecnológica de Pereira · 2026-2*
+El desarrollo avanza en **cuatro fases**:
+
+- **Fase 1** `Semanas 1–3` — Diseño conceptual y planeación.
+- **Fase 2** `Semanas 4–5` — Diseño detallado y preparación para la fabricación.
+- **Fase 3** `Semanas 6–10` — Fabricación, integración y autonomía.
+- **Fase 4** `Semana 11 en adelante` — Pruebas, refinamiento y cierre.
+
+---
+
+### 📂 Contenido de la carpeta
+
+📋 **[01_Formulacion](01_Formulacion/)** — Acta de constitución y propuesta formal: definición, alcance, objetivos, presupuesto y riesgos del proyecto.
+
+📅 **[02_Planeacion](02_Planeacion/)** — Diagrama de Gantt y ruta crítica (CPM): programación de actividades, carga de trabajo e hitos de entrega.
+
+📓 **[03_Bitacoras](03_Bitacoras/)** — Registro quincenal de la planeación y la ejecución de las actividades del equipo.
+
+---
+
+<div align="center">
+<sub><a href="../README.md">⬅️ Volver al inicio</a></sub>
+</div>
